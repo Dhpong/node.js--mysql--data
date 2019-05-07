@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<a href="javascript:getlove()">123</a>
+
+
+
+
+	<div></div>
+
+	<script type="text/javascript">
+
+		var strs ="编码误";
+		console.log(strcode);
+		var strcode =strs.charCodeAt(1);  //charCodeAt: Unicode 解码
+		var strfun =String.fromCharCode(strcode);   //编码
+		console.log(strfun);
+
+
+
+
+
+		function f(){
+			//arguments:获取实际参数
+			var first =arguments[0];   //获取第一个实际参数
+			var second =arguments[1];   //获取第二个实际参数
+			var len =arguments.length;   //获取实参个数
+			//通过循环获取所有实参
+			for(var i=0;i<len;i++){
+				console.log(arguments[i]);
+			}
+		}
+		f("qw","ds","bb");
+
+		
+
+		//根据参数个数执行相应的逻辑
+		function party(){
+			console.log("arguments---",arguments);
+			//保存人数
+			var count =arguments.length;
+			if(count ==1 ){
+				console.log("123");
+			}else if(count==2) {
+				console.log("456");
+			}else if(count ==3){
+				console.log("789");
+			}else{
+				console.log("963");
+			}
+		}
+		party("123","456");
+
+
+		var name =["123","456","789","741"];
+		newname =["00","11","22","33"];
+		for(var i=0;i<name.length;i++){
+			// console.log("name[i]----",name);
+		}
+		for(var j=0;j<newname.length;j++){
+			name[j] =newname[j];
+			
+		}
+		console.log("name---", name);
+
+
+		/*
+		用户登陆银行系统：假如目前用户登陆银行系统，如果输错3次密码，立即冻结该用户
+		
+		*/
+		var pwd ="action";   // 用户初始化密码
+		var count =0;   //输入密码次数
+		function login(){
+			console.log(arguments.callee==login);
+			if(count==3){   //输入次数超过3次，则拦截
+				console.log("您已经输错3次密码了，请明天再登陆");
+				return;  //拦截登陆
+			}
+			//请输入密码
+			var password =prompt("请输入您的密码");  
+			//判断输入密码与输入密码是否一致
+			if(pwd==password){   
+				console.log("登陆成功")
+			}else{
+				count++;  //输入次数
+				arguments.callee();   //递归：重新输入
+			}
+
+		}
+		// login();
+		
+		
+
+		var pwd ="action";   // 用户初始化密码
+		var count =0;   //输入密码次数
+		function login(){
+			if(count==3){   //输入次数超过3次，则拦截
+				console.log("您已经输错3次密码了，请明天再登陆")
+				return;  //拦截登陆
+			}
+			//请输入密码
+			var password =prompt("请输入您的密码");  
+			//判断输入密码与输入密码是否一致
+			if(pwd==password){   
+				console.log("登陆成功")
+			}else{
+				count++;  //输入次数
+				login();   //重新输入
+			}
+
+		}
+		// login();
+
+
+
+
+		//将数组两值互换
+		var person =["a","b" ];
+		var p=person[0];
+		person[0] =person[1];
+		person[1] =p;
+		console.log(person);
+
+
+		//定义一个升序函数
+		function up(a,b){
+			return a-b;
+		}
+		//定义一个降序函数
+		function down(a,b){
+			return b-a;
+		}
+		//定义数组
+		var arr=[1,52,32,65,85,12,65,741];
+
+		var arrup = arr.sort(up);  //函数作为参数传入方法中用
+		console.log(arrup);
+
+		var arrdown= arr.sort(down);
+		console.log(arrdown);
+
+
+		// 函数递归：函数调用函数本身
+		// function getnum(n){
+		// 		if(n==0){
+		// 			return 0;
+		// 		}
+		// 		if(n==1){
+		// 			return 1;
+		// 		}
+		// 		return getnum(n-2)+getnum(n-1);
+		// }
+		// var result =getnum(6);
+		// console.log(result);  //8
+
+
+		function func(n){
+			if(n==2||n==1||n==0){
+				return n;
+			}
+			return func(n-3)+func(n-4);
+		}
+		var resultfunc =func(8);
+		console.log(resultfunc);   //4
+
+		/**
+		 解析：
+		n=8=>n=5||n=4==>4;
+		n=5=>n=2||n=1==>2+1;
+		n=4=>n=1||n=0==>1+0;
+		**/
+		
+
+
+
+
+
+
+		//超链接调用函数
+		function getlove(){
+			alert("456789")
+		}
+
+		// 1-10的和
+		var sum =0;
+		for(var i=0;i<=10;i++ ){
+			sum +=i;
+		}
+		console.log(sum);
+
+
+		var str="";
+	    for(var i=100;i<1000;i++){
+	        var a = i % 10;
+	        var b=( i / 10) % 10;
+	        b = parseInt(b);
+	        var c=i/100;
+	        c =parseInt(c);
+	        if(i==(a*a*a+b*b*b+c*c*c)){
+	          str=str+i+"、" ;
+	        }
+	    }
+	    console.log(str);
+
+
+	    function fun(a){
+	      function multi(x){
+	        return x*x;
+	      }
+	      var m=1;
+	      for(var i=1;i<=multi(a);i++){
+	        m=m*i;
+	      }
+	      return m;
+	    }
+	    var sum1=fun(2)+fun(3);
+	    console.log(sum1)
+
+	</script>
+
+</body>
+</html>

@@ -1,5 +1,16 @@
 <template>
   <div class="hello">
+    <a href="javascript:getlove()">表白</a>
+
+    <div @click="shuixian()" >123456789</div>
+
+    <div @click="fun()" >85271</div>
+
+    <div @click="strfun()" >df</div>
+
+    <div @click="sumstr()" >df5245</div>
+
+    <div @click="strnum()" >df7755</div>
 
     <div>
       <!-- 分类 -->
@@ -54,7 +65,7 @@
     
 
     
-    <h2>Essential Links</h2>
+    <h2 >Essential Links</h2>
 
     <!-- 博文 -->
     <div class="article">
@@ -238,6 +249,7 @@
       </p>
 
     </div>
+
     
   </div>
 </template>
@@ -248,7 +260,114 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+
     }
+  },
+
+  methods:{
+    getlove(){
+      alert("l love you");
+
+    },
+
+
+    // 水仙花数
+    shuixian(){
+      var str="";
+      for(var i=100;i<1000;i++){
+          var a = i % 10;
+          var b=( i / 10) % 10;
+          b = parseInt(b);
+          var c=i/100;
+          c =parseInt(c);
+          if(i==(a*a*a+b*b*b+c*c*c)){
+            str=str+i+"、" ;
+          }
+      }
+      console.log(str);
+
+    },
+
+    //  嵌套函数用于阶乘
+    //  此类例子一般把函数放在方法中去嵌套
+    fun(){
+      // console.log("133");
+      function fun(a){
+        function multi(x){
+          return x*x;
+        }
+        var m=1;
+        for(var i=1;i<=multi(a);i++){
+          m=m*i;
+        }
+        return m;
+      }
+      var sum1=fun(2)+fun(3);
+      console.log(sum1)
+    },
+
+    //找出字符中小于某个字符的所有字符
+    strfun(){
+      var str ="gchagcjajvkjfd cgasujch chasjcs";
+      var strf ="";
+      var sum2="";
+      for(var i=0;i<str.length;i++){
+        if(str.charAt(i)<"b"){
+          strf +=str.charAt(i);
+          sum2++;
+        }
+        
+        
+      }
+      console.log(strf);
+      console.log(strf.length);
+    },
+
+
+    //统计一个字符的个数
+    sumstr(){
+      var str3="wfygsab csbacgccahsbhxjm csabjxsa";
+      var n=0;
+      for(var i=0;i<str3.length;i++){
+        var char =str3.charAt(i);
+        if(char.toLowerCase()=="c"){
+          n+=1;
+        }
+      }
+      console.log(n);
+    },
+
+     //统计字符串中有多少个数字
+    strnum(){
+      function get(str4){
+        var num=0;
+        for(var i=0;i<str4.length;i++){
+          var char =str4.charAt(i);  //str4.charAt(i)：获取字符串中的每一个字符
+          if(!isNaN(char)){    //判断是否是数字
+            num++;
+          }
+        }
+        return num;
+      }
+      var str4 ="fugcsadhgbs5f4dsf459s8f";
+      console.log(get(str4));
+    }
+
+
+
+
+
+    
+
+
+
+
+  },
+
+  mounted(){
+
+    // this.shuixian();
+    
   }
 }
 </script>

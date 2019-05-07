@@ -15,15 +15,18 @@ exports.classList = function (list, callback) {
   async.eachSeries(list, function (item, next) {
 
     // 查询分类是否已存在
-    db.query('SELECT * FROM `class_list` WHERE `id`=? LIMIT 1', [item.id], function (err, data) {
+    var SELECT ='SELECT * FROM `class_list` WHERE `id`=? LIMIT 1';
+    db.query(SELECT, [item.id], function (err, data) {
       if (err) return next(err);
 
       if (Array.isArray(data) && data.length >= 1) {
         // 分类已存在，更新一下
-        db.query('UPDATE `class_list` SET `name`=?, `url`=? WHERE `id`=?', [item.name, item.url, item.id], next);
+        var UPDATE='UPDATE `class_list` SET `name`=?, `url`=? WHERE `id`=?';
+        db.query(UPDATE, [item.name, item.url, item.id], next);
       } else {
         // 分类不存在，添加
-        db.query('INSERT INTO `class_list`(`id`, `name`, `url`) VALUES (?, ?, ?)', [item.id, item.name, item.url], next);
+        var INSERT='INSERT INTO `class_list`(`id`, `name`, `url`) VALUES (?, ?, ?)';
+        db.query(INSERT, [item.id, item.name, item.url], next);
       }
     });
 
@@ -38,7 +41,8 @@ exports.classList = function (list, callback) {
  * @param {Function} callback
  */
 exports.articleList = function (class_id, list, callback) {
-  debug('保存文章列表到数据库中: %d, %d', class_id, list.length);
+  var debugstr ='保存文章列表到数据库中: %d, %d';
+  debug(debugstr, class_id, list.length);
 
   async.eachSeries(list, function (item, next) {
 
